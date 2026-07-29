@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>다모아모바일 | 신형 스마트폰 사전예약 · 특가 개통</title>
+<meta name="description" content="다모아모바일 공식 인증 대리점 - 신형 스마트폰 사전예약, 특가 단말기, 인터넷/IPTV 결합, 전국 택배 개통 안내">
+
+<!-- ===================== 커스터마이징 가이드 =====================
+  1) 상단 <!-- EDIT: --> 주석이 붙은 곳을 실제 정보로 바꾸세요.
+  2) 색상은 :root 안 CSS 변수만 바꾸면 전체 톤이 바뀝니다.
+  3) 상품/매장 카드는 복사-붙여넣기로 개수를 늘리거나 줄이면 됩니다.
+======================================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+<style>
+  :root{
+    /* ---------- 색상 토큰 (여기만 바꾸면 전체 톤 변경) ---------- */
+    --red-700:#B8001F;
+    --red-600:#E6002D;
+    --red-500:#FF2A47;
+    --red-050:#FFF1F3;
+    --gold-500:#FFB300;
+    --ink-900:#17181A;
+    --ink-600:#3F4147;
+    --ink-500:#6B6E76;
+    --ink-300:#A7A9B0;
+    --paper:#FFFFFF;
+    --surface:#F7F6F5;
+    --line:#EBEAE8;
+
+    --font-display:'Black Han Sans', sans-serif;
+    --font-body:'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius:14px;
+    --shadow-sm: 0 2px 10px rgba(23,24,26,.06);
+    --shadow-md: 0 12px 30px rgba(23,24,26,.10);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:var(--font-body); color:var(--ink-900);
+    background:var(--paper); line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none; margin:0; padding:0;}
+  h1,h2,h3{margin:0; line-height:1.25;}
+  .container{max-width:1080px; margin:0 auto; padding:0 20px;}
+  .section{padding:72px 0;}
+  .section-alt{background:var(--surface);}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:13px; font-weight:700; color:var(--red-600);
+    background:var(--red-050); padding:6px 12px; border-radius:999px;
+    margin-bottom:14px;
+  }
+  .section-title{
+    font-size:clamp(24px,3.4vw,34px); font-weight:800; letter-spacing:-.02em;
+  }
+  .section-sub{color:var(--ink-500); margin-top:10px; font-size:15px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 22px; border-radius:10px; font-weight:700; font-size:15px;
+    border:none; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:active{transform:scale(.98);}
+  .btn-primary{background:var(--red-600); color:#fff; box-shadow:var(--shadow-sm);}
+  .btn-primary:hover{background:var(--red-700);}
+  .btn-outline{background:#fff; color:var(--ink-900); border:1.5px solid var(--line);}
+  .btn-outline:hover{border-color:var(--red-600); color:var(--red-600);}
+  .btn-block{width:100%;}
+
+  /* ---------- 상단 유틸 바 ---------- */
+  .topbar{
+    background:var(--ink-900); color:#fff; font-size:12.5px;
+  }
+  .topbar .container{
+    display:flex; align-items:center; justify-content:space-between; height:38px;
+  }
+  .topbar .badge{display:flex; align-items:center; gap:6px; color:#DADBDF;}
+  .topbar .links{display:flex; gap:16px;}
+  .topbar .links a{color:#fff; opacity:.9;}
+  .topbar .links a:hover{opacity:1; text-decoration:underline;}
+
+  /* ---------- 헤더 / 네비 ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:40; background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+  }
+  .nav .container{display:flex; align-items:center; justify-content:space-between; height:64px;}
+  .logo{font-family:var(--font-display); font-size:20px; color:var(--red-600); letter-spacing:.01em;}
+  .logo span{color:var(--ink-900);}
+  .nav-links{display:flex; gap:26px; font-size:14.5px; font-weight:600; color:var(--ink-600);}
+  .nav-links a:hover{color:var(--red-600);}
+  .nav-cta{display:flex; gap:8px;}
+  .nav-cta .btn{padding:10px 16px; font-size:13.5px;}
+  @media (max-width:860px){ .nav-links{display:none;} }
+
+  /* ---------- 히어로 ---------- */
+  .hero{
+    position:relative; overflow:hidden; background:var(--ink-900);
+    color:#fff; padding:64px 0 90px;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(60% 60% at 82% 10%, rgba(230,0,45,.55), transparent 60%),
+      radial-gradient(50% 50% at 10% 90%, rgba(230,0,45,.25), transparent 60%);
+  }
+  .hero .container{position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center;}
+  @media (max-width:860px){ .hero .container{grid-template-columns:1fr;} }
+  .hero-date{
+    display:inline-flex; gap:10px; align-items:center; font-size:13px; color:#FFD9DF;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16);
+    padding:7px 14px; border-radius:999px; margin-bottom:20px;
+  }
+  .hero h1{
+    font-family:var(--font-display); font-size:clamp(30px,4.6vw,48px);
+    letter-spacing:-.01em; line-height:1.28;
+  }
+  .hero h1 em{font-style:normal; color:#FF7A8C;}
+  .hero-desc{color:#D9DADF; margin-top:18px; font-size:16px; max-width:460px;}
+  .hero-perks{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px;}
+  .hero-perks li{
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);
+    padding:8px 14px; border-radius:999px; font-size:13.5px; font-weight:600;
+  }
+  .hero-cta{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+
+  /* 히어로 오른쪽 - 가격 계산기(시그니처 요소) */
+  .price-card{
+    background:#fff; color:var(--ink-900); border-radius:20px; padding:26px;
+    box-shadow:var(--shadow-md); position:relative;
+  }
+  .price-card .tag{
+    position:absolute; top:-14px; right:22px; background:var(--gold-500); color:#3A2600;
+    font-size:12.5px; font-weight:800; padding:6px 12px; border-radius:999px;
+    box-shadow:0 6px 14px rgba(255,179,0,.4);
+  }
+  .price-card h3{font-size:15px; color:var(--ink-500); font-weight:600;}
+  .price-card .model{font-size:19px; font-weight:800; margin-top:4px;}
+  .price-row{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px dashed var(--line); font-size:14.5px;}
+  .price-row span:first-child{color:var(--ink-500);}
+  .price-row.minus span:last-child{color:var(--red-600); font-weight:700;}
+  .price-final{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:16px; padding-top:16px; border-top:2px solid var(--ink-900);
+  }
+  .price-final span:first-child{font-size:14.5px; font-weight:700;}
+  .price-final b{
+    font-size:28px; font-family:var(--font-display); color:var(--red-600);
+  }
+
+  /* ---------- 사전예약 카드 ---------- */
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media (max-width:900px){ .grid-3{grid-template-columns:1fr;} }
+  .product-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; box-shadow:var(--shadow-sm); display:flex; flex-direction:column;
+  }
+  .product-thumb{
+    height:180px; background:linear-gradient(135deg,var(--red-050),#fff);
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .product-thumb .phone-shape{
+    width:78px; height:150px; border-radius:16px; background:var(--ink-900);
+    position:relative; box-shadow:0 14px 30px rgba(0,0,0,.18);
+  }
+  .product-thumb .phone-shape::after{
+    content:""; position:absolute; inset:6px; border-radius:10px;
+    background:linear-gradient(160deg, var(--red-500), var(--red-700));
+  }
+  .product-thumb .badge{
+    position:absolute; top:14px; left:14px; background:var(--red-600); color:#fff;
+    font-size:12px; font-weight:700; padding:5px 10px; border-radius:999px;
+  }
+  .product-body{padding:20px 22px 24px; flex:1; display:flex; flex-direction:column;}
+  .product-body h3{font-size:18px; font-weight:800;}
+  .product-body .perk{
+    font-size:13px; color:var(--red-600); font-weight:700; margin-top:8px;
+    background:var(--red-050); display:inline-block; padding:5px 10px; border-radius:8px;
+  }
+  .product-body .spec-table{margin-top:16px; font-size:13.5px;}
+  .product-body .spec-table div{display:flex; justify-content:space-between; padding:6px 0; color:var(--ink-500); border-bottom:1px solid var(--line);}
+  .product-body .spec-table div b{color:var(--ink-900); font-weight:700;}
+  .product-body .final-price{margin-top:14px; font-size:15px; font-weight:700;}
+  .product-body .final-price b{color:var(--red-600); font-size:20px; margin-left:4px;}
+  .product-body .btn{margin-top:18px;}
+
+  /* ---------- 특가 단말기 ---------- */
+  .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media (max-width:960px){ .grid-4{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .grid-4{grid-template-columns:1fr;} }
+  .device-card{
+    background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px;
+    box-shadow:var(--shadow-sm);
+  }
+  .device-card .thumb-sm{
+    height:110px; border-radius:8px; background:var(--surface); margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .device-card .thumb-sm .dot{width:42px; height:76px; border-radius:9px; background:linear-gradient(160deg,var(--ink-600),var(--ink-900));}
+  .device-card h4{font-size:15px; font-weight:800;}
+  .device-card .sub{font-size:12.5px; color:var(--ink-500); margin-top:2px;}
+  .device-card .final-price{margin-top:12px; font-size:13.5px; color:var(--ink-500);}
+  .device-card .final-price b{display:block; font-size:19px; color:var(--ink-900); font-weight:800; margin-top:2px;}
+  .device-card .btn{margin-top:12px; padding:10px; font-size:13px;}
+
+  .tabs{display:flex; gap:8px; margin:28px 0 22px;}
+  .tab-btn{
+    padding:9px 18px; border-radius:999px; border:1.5px solid var(--line); background:#fff;
+    font-weight:700; font-size:13.5px; cursor:pointer; color:var(--ink-500);
+  }
+  .tab-btn.active{background:var(--ink-900); color:#fff; border-color:var(--ink-900);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:grid;}
+
+  /* ---------- 택배개통 ---------- */
+  .delivery{
+    background:var(--ink-900); color:#fff; border-radius:24px; padding:52px 44px;
+    display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center;
+  }
+  @media (max-width:860px){ .delivery{grid-template-columns:1fr; padding:36px 24px;} }
+  .delivery ul{margin-top:20px; display:flex; flex-direction:column; gap:10px;}
+  .delivery ul li{display:flex; gap:10px; font-size:14.5px; color:#E4E4E8;}
+  .delivery ul li::before{content:"✓"; color:var(--red-500); font-weight:800;}
+  .delivery-visual{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+    border-radius:16px; padding:30px; text-align:center;
+  }
+  .delivery-visual .big{font-family:var(--font-display); font-size:40px; color:var(--red-500);}
+  .delivery-visual .small{color:#C7C8CE; font-size:13.5px; margin-top:6px;}
+
+  /* ---------- 매장 ---------- */
+  .store-card{
+    background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px;
+    display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow-sm);
+  }
+  .store-card .thumb-sm{height:90px; border-radius:8px; background:var(--surface);}
+  .store-card h4{font-size:15px; font-weight:800;}
+  .store-card .addr{font-size:12.5px; color:var(--ink-500); display:flex; gap:5px;}
+  .store-more{text-align:center; margin-top:26px;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; cursor:pointer;
+    padding:20px 4px; font-weight:700; font-size:15.5px;
+  }
+  .faq-q .plus{font-size:20px; color:var(--red-600); transition:transform .2s ease;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0; overflow:hidden; transition:max-height .25s ease;
+    color:var(--ink-500); font-size:14.5px; padding:0 4px;
+  }
+  .faq-item.open .faq-a{padding-bottom:20px;}
+
+  /* ---------- 상담안내 3열 ---------- */
+  .info-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media (max-width:860px){ .info-grid{grid-template-columns:1fr;} }
+  .info-card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:26px;}
+  .info-card .icon{
+    width:44px; height:44px; border-radius:12px; background:var(--red-050);
+    display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:14px;
+  }
+  .info-card h4{font-size:16px; font-weight:800;}
+  .info-card p{font-size:13.5px; color:var(--ink-500); margin-top:8px;}
+
+  /* ---------- CTA 배너 ---------- */
+  .cta-banner{
+    background:linear-gradient(120deg, var(--red-700), var(--red-600));
+    color:#fff; border-radius:24px; padding:56px 40px; text-align:center;
+  }
+  .cta-banner h2{font-family:var(--font-display); font-size:clamp(22px,3vw,30px);}
+  .cta-banner p{color:#FFD9DF; margin-top:12px; font-size:15px;}
+  .cta-banner .btn{margin-top:24px; background:#fff; color:var(--red-600);}
+
+  /* ---------- 푸터 ---------- */
+  footer{background:var(--ink-900); color:#B8B9C0; padding:50px 0 100px; font-size:13px;}
+  footer .brand{color:#fff; font-family:var(--font-display); font-size:18px; margin-bottom:14px;}
+  footer .row{display:flex; gap:22px; flex-wrap:wrap; margin-bottom:18px;}
+  footer .stores{display:grid; grid-template-columns:repeat(3,1fr); gap:6px 20px; margin-top:18px; font-size:12.5px; color:#8E8F98;}
+  @media (max-width:700px){ footer .stores{grid-template-columns:1fr;} }
+  footer .disclaimer{margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,.1); font-size:11.5px; color:#75767F;}
+
+  /* ---------- 모바일 하단 고정 CTA ---------- */
+  .mobile-cta{
+    position:fixed; left:0; right:0; bottom:0; z-index:50; display:none;
+    background:#fff; border-top:1px solid var(--line); padding:10px 14px;
+    box-shadow:0 -6px 20px rgba(0,0,0,.08);
+  }
+  .mobile-cta .row{display:flex; gap:10px;}
+  .mobile-cta .btn{flex:1; padding:13px;}
+  @media (max-width:640px){ .mobile-cta{display:block;} body{padding-bottom:74px;} }
+</style>
+</head>
+<body>
+
+<!-- 상단 유틸 바 -->
+<div class="topbar">
+  <div class="container">
+    <div class="badge">📶 LGU+ 공식인증 온라인 대리점</div>
+    <div class="links">
+      <!-- EDIT: 카카오톡 채널 링크로 교체 -->
+      <a href="https://pf.kakao.com/_your_channel/chat" target="_blank">카카오톡 상담</a>
+      <!-- EDIT: 대표 전화번호로 교체 -->
+      <a href="tel:0000000000">전화 문의</a>
+    </div>
+  </div>
+</div>
+
+<!-- 헤더 -->
+<header class="nav">
+  <div class="container">
+    <div class="logo"><span>다모아</span>모바일</div>
+    <nav class="nav-links">
+      <a href="#preorder">사전예약</a>
+      <a href="#phones">특가단말기</a>
+      <a href="#delivery">택배개통</a>
+      <a href="#stores">매장찾기</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-outline" href="tel:0000000000">📞 전화상담</a>
+      <a class="btn btn-primary" href="https://pf.kakao.com/_your_channel/chat" target="_blank">💬 카톡상담</a>
+    </div>
+  </div>
+</header>
+
+<!-- 히어로 -->
+<section class="hero">
+  <div class="container">
+    <div>
+      <div class="hero-date">🗓 8월 12일 사전예약 시작 · 8월 19일 개통</div>
+      <h1>신형 폴더블 사전예약<br><em>지원금 최대 100만원</em> 받고 개통하세요</h1>
+      <p class="hero-desc">공식인증 대리점 다모아모바일에서 사전예약하면 스토리지 무료 업그레이드와 대리점 단독 지원금까지 한 번에 받을 수 있어요.</p>
+      <ul class="hero-perks">
+        <li>🎁 스토리지 무료 업그레이드</li>
+        <li>💸 대리점 단독 지원금 최대 50만원</li>
+        <li>📦 전국 택배 개통 가능</li>
+      </ul>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#preorder">사전예약 알림 신청 →</a>
+        <a class="btn btn-outline" style="background:transparent;border-color:rgba(255,255,255,.3);color:#fff;" href="#phones">특가단말기 보기</a>
+      </div>
+    </div>
+
+    <!-- 시그니처 요소: 가격 계산 카드 -->
+    <div class="price-card">
+      <span class="tag">최대 혜택</span>
+      <h3>사전예약 특가</h3>
+      <div class="model">갤럭시 폴더블 · 256GB</div>
+      <div class="price-row"><span>출고가</span><span>2,278,000원</span></div>
+      <div class="price-row minus"><span>공시지원금</span><span>- 500,000원</span></div>
+      <div class="price-row minus"><span>대리점 지원금</span><span>- 500,000원</span></div>
+      <div class="price-final"><span>할부원금</span><b id="countPrice">1,278,000원</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 사전예약 -->
+<section id="preorder" class="section">
+  <div class="container">
+    <span class="eyebrow">🌟 PRE-ORDER</span>
+    <h2 class="section-title">사전예약 접수중</h2>
+    <p class="section-sub">아래 모델은 8월 12일부터 사전예약, 8월 19일부터 순차 개통됩니다.</p>
+
+    <div class="grid-3" style="margin-top:32px;">
+
+      <!-- 상품카드 1 -->
+      <div class="product-card">
+        <div class="product-thumb"><span class="badge">사전예약</span><div class="phone-shape"></div></div>
+        <div class="product-body">
+          <h3>갤럭시 폴더블 스탠다드</h3>
+          <span class="perk">🔥 256GB → 512GB 무료 업그레이드</span>
+          <div class="spec-table">
+            <div><span>출고가</span><b>2,278,000원</b></div>
+            <div><span>공시지원금</span><b>- 500,000원</b></div>
+            <div><span>대리점 지원금</span><b>- 500,000원</b></div>
+          </div>
+          <div class="final-price">할부원금<b>1,278,000원</b></div>
+          <a class="btn btn-primary btn-block" href="https://pf.kakao.com/_your_channel/chat" target="_blank">사전예약 알림 신청</a>
+        </div>
+      </div>
+
+      <!-- 상품카드 2 -->
+      <div class="product-card">
+        <div class="product-thumb"><span class="badge">사전예약</span><div class="phone-shape"></div></div>
+        <div class="product-body">
+          <h3>갤럭시 폴더블 울트라</h3>
+          <span class="perk">🔥 256GB → 512GB 무료 업그레이드</span>
+          <div class="spec-table">
+            <div><span>출고가</span><b>2,577,000원</b></div>
+            <div><span>공시지원금</span><b>- 500,000원</b></div>
+            <div><span>대리점 지원금</span><b>- 500,000원</b></div>
+          </div>
+          <div class="final-price">할부원금<b>1,577,000원</b></div>
+          <a class="btn btn-primary btn-block" href="https://pf.kakao.com/_your_channel/chat" target="_blank">사전예약 알림 신청</a>
+        </div>
+      </div>
+
+      <!-- 상품카드 3 -->
+      <div class="product-card">
+        <div class="product-thumb"><span class="badge">사전예약</span><div class="phone-shape"></div></div>
+        <div class="product-body">
+          <h3>갤럭시 플립 신모델</h3>
+          <span class="perk">🔥 256GB → 512GB 무료 업그레이드</span>
+          <div class="spec-table">
+            <div><span>출고가</span><b>1,683,000원</b></div>
+            <div><span>공시지원금</span><b>- 500,000원</b></div>
+            <div><span>대리점 지원금</span><b>- 500,000원</b></div>
+          </div>
+          <div class="final-price">할부원금<b>683,000원</b></div>
+          <a class="btn btn-primary btn-block" href="https://pf.kakao.com/_your_channel/chat" target="_blank">사전예약 알림 신청</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 특가 단말기 -->
+<section id="phones" class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">📱 HOT DEAL</span>
+    <h2 class="section-title">공식 인증 특가 단말기</h2>
+    <p class="section-sub">삼성 / 아이폰 최신 모델을 특가로 만나보세요.</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="samsung">삼성</button>
+      <button class="tab-btn" data-tab="apple">아이폰</button>
+    </div>
+
+    <div class="tab-panel active grid-4" id="tab-samsung">
+      <div class="device-card">
+        <div class="thumb-sm"><div class="dot"></div></div>
+        <h4>갤럭시 S26 Ultra</h4>
+        <div class="sub">256GB · 번호이동</div>
+        <div class="final-price">할부원금<b>652,400원</b></div>
+        <a class="btn btn-outline btn-block" href="tel:0000000000">상담받기</a>
+      </div>
+      <div class="device-card">
+        <div class="thumb-sm"><div class="dot"></div></div>
+        <h4>갤럭시 S26+</h4>
+        <div class="sub">256GB · 번호이동</div>
+        <div class="final-price">할부원금<b>307,000원</b></div>
+        <a class="btn btn-outline btn-block" href="tel:0000000000">상담받기</a>
+      </div>
+      <div class="device-card">
+        <div class="thumb-sm"><div class="dot"></div></div>
+        <h4>갤럭시 S26</h4>
+        <div class="sub">256GB · 번호이동</div>
+        <div class="final-price">할부원금<b>109,000원</b></div>
+        <a class="btn btn-outline btn-block" href="tel:0000000000">상담받기</a>
+      </div>
+      <div class="device-card">
+        <div class="thumb-sm"><div class="dot"></div></div>
+        <h4>갤럭시 S25 Edge</h4>
+        <div class="sub">256GB · 번호이동</div>
+        <div class="final-price">할부원금<b>0원</b></div>
+        <a class="btn btn-outline btn-block" href="tel:0000000000">상담받기</a>
+      </div>
+    </div>
+
+    <div class="tab-panel grid-4" id="tab-apple">
+      <div class="device-card">
+        <div class="thumb-sm"><div class="dot"></div></div>
+        <h4>iPhone 17 Pro Max</h4>
+        <div class="sub">256GB · 번호이동</div>
+        <div class="final-price">할부원금<b>1,359,000원</b></div>
+        <a class="btn btn-outline btn-block" href="tel:0000000000">상담받기</a>
+      </div>
+      <div class="device-card">
+        <div class="thumb-sm"><div class="dot"></div></div>
+        <h4>iPhone 17 Pro</h4>
+        <div class="sub">256GB · 번호이동</div>
+        <div class="final-price">할부원금<b>759,000원</b></div>
+        <a class="btn btn-outline btn-block" href="tel:0000000000">상담받기</a>
+      </div>
+      <div class="device-card">
+        <div class="thumb-sm"><div class="dot"></div></div>
+        <h4>iPhone 17</h4>
+        <div class="sub">128GB · 번호이동</div>
+        <div class="final-price">할부원금<b>265,000원</b></div>
+        <a class="btn btn-outline btn-block" href="tel:0000000000">상담받기</a>
+      </div>
+      <div class="device-card">
+        <div class="thumb-sm"><div class="dot"></div></div>
+        <h4>iPhone 16</h4>
+        <div class="sub">128GB · 번호이동</div>
+        <div class="final-price">할부원금<b>163,000원</b></div>
+        <a class="btn btn-outline btn-block" href="tel:0000000000">상담받기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 택배개통 -->
+<section id="delivery" class="section">
+  <div class="container">
+    <div class="delivery">
+      <div>
+        <span class="eyebrow" style="background:rgba(255,255,255,.1); color:#FFD9DF;">📦 전국 택배 개통</span>
+        <h2 class="section-title" style="color:#fff;">매장이 멀어도 괜찮아요</h2>
+        <ul>
+          <li>100% 비대면 온라인 신청</li>
+          <li>안전한 택배로 단말기 먼저 수령</li>
+          <li>수령 후 셀프 개통 진행</li>
+          <li>매장과 동일한 특가 조건 적용</li>
+        </ul>
+        <a class="btn btn-primary" style="margin-top:26px;" href="https://pf.kakao.com/_your_channel/chat" target="_blank">택배개통 상담하기</a>
+      </div>
+      <div class="delivery-visual">
+        <div class="big">D+1</div>
+        <div class="small">신청 후 평균 발송 소요일</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 매장안내 -->
+<section id="stores" class="section section-alt">
+  <div class="container">
+    <span class="eyebrow">🏬 STORE</span>
+    <h2 class="section-title">가까운 매장을 찾아보세요</h2>
+    <p class="section-sub">직영점 방문 시 실물 확인 후 바로 개통할 수 있어요.</p>
+
+    <div class="grid-4" style="margin-top:32px;">
+      <!-- EDIT: 실제 매장명/주소로 교체, 카드 복사해서 개수 조정 -->
+      <div class="store-card">
+        <div class="thumb-sm"></div>
+        <h4>강남점</h4>
+        <div class="addr">📍 서울특별시 강남구 테헤란로 000</div>
+        <a class="btn btn-outline btn-block" href="#" target="_blank">방문 예약</a>
+      </div>
+      <div class="store-card">
+        <div class="thumb-sm"></div>
+        <h4>수원점</h4>
+        <div class="addr">📍 경기도 수원시 팔달구 000</div>
+        <a class="btn btn-outline btn-block" href="#" target="_blank">방문 예약</a>
+      </div>
+      <div class="store-card">
+        <div class="thumb-sm"></div>
+        <h4>안양점</h4>
+        <div class="addr">📍 경기도 안양시 동안구 000</div>
+        <a class="btn btn-outline btn-block" href="#" target="_blank">방문 예약</a>
+      </div>
+      <div class="store-card">
+        <div class="thumb-sm"></div>
+        <h4>인천점</h4>
+        <div class="addr">📍 인천광역시 남동구 000</div>
+        <a class="btn btn-outline btn-block" href="#" target="_blank">방문 예약</a>
+      </div>
+    </div>
+    <div class="store-more"><a class="btn btn-outline" href="#">전체 매장 보기 ∨</a></div>
+  </div>
+</section>
+
+<!-- 상담안내 3열 -->
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">✅ GUIDE</span>
+    <h2 class="section-title">이런 상담을 도와드려요</h2>
+    <div class="info-grid" style="margin-top:32px;">
+      <div class="info-card">
+        <div class="icon">📲</div>
+        <h4>번호이동 · 기기변경 · 신규가입</h4>
+        <p>가입 유형에 따라 받을 수 있는 지원금이 다릅니다. 가장 유리한 조건으로 비교해 드려요.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">💰</div>
+        <h4>공시지원금 vs 선택약정</h4>
+        <p>2년 총비용 기준으로 어느 쪽이 더 저렴한지 숫자로 계산해서 안내해 드립니다.</p>
+      </div>
+      <div class="info-card">
+        <div class="icon">📺</div>
+        <h4>인터넷 · IPTV 결합</h4>
+        <p>휴대폰과 함께 가입하면 통신비 부담을 크게 낮출 수 있어요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section section-alt">
+  <div class="container" style="max-width:760px;">
+    <span class="eyebrow">❓ FAQ</span>
+    <h2 class="section-title">자주 묻는 질문</h2>
+
+    <div style="margin-top:24px;">
+      <div class="faq-item open">
+        <div class="faq-q">사전예약은 언제부터 시작하나요? <span class="plus">+</span></div>
+        <div class="faq-a" style="max-height:120px;">사전예약은 8월 12일부터 시작되며, 개통은 8월 19일부터 순차적으로 진행됩니다. 물량이 한정되어 있으니 미리 알림 신청을 남겨주세요.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">지방에서도 사전예약 혜택을 받을 수 있나요? <span class="plus">+</span></div>
+        <div class="faq-a">네, 전국 어디서나 택배 개통으로 매장 방문과 동일한 혜택을 받으실 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">공시지원금과 선택약정 중 어떤 게 더 유리한가요? <span class="plus">+</span></div>
+        <div class="faq-a">요금제와 사용 기간에 따라 유리한 쪽이 달라집니다. 상담을 통해 2년 총비용 기준으로 비교해 드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">법인폰이나 다회선 개통도 가능한가요? <span class="plus">+</span></div>
+        <div class="faq-a">네, 법인폰 개통 및 기업 특판 전담 상담을 별도로 운영하고 있습니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 배너 -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>숨겨진 조건 없는 상담,<br>지금 바로 받아보세요</h2>
+      <p>출고가부터 할부원금까지 투명하게 안내해 드립니다.</p>
+      <a class="btn" href="https://pf.kakao.com/_your_channel/chat" target="_blank">1:1 실시간 상담 시작하기</a>
+    </div>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer>
+  <div class="container">
+    <!-- EDIT: 실제 상호/대표자/사업자번호/주소로 교체 -->
+    <div class="brand">다모아모바일</div>
+    <div class="row">
+      <span>대표 : 홍길동</span>
+      <span>대표번호 : 000-0000-0000</span>
+      <span>사업자번호 : 000-00-00000</span>
+    </div>
+    <div>주소 : 서울특별시 강남구 테헤란로 000, 1층</div>
+
+    <div class="stores">
+      <span>▶ 강남점 : 서울특별시 강남구 테헤란로 000</span>
+      <span>▶ 수원점 : 경기도 수원시 팔달구 000</span>
+      <span>▶ 안양점 : 경기도 안양시 동안구 000</span>
+      <span>▶ 인천점 : 인천광역시 남동구 000</span>
+    </div>
+
+    <div class="disclaimer">
+      ※ 본 번호로의 광고·영업 전화는 정보통신망법 위반으로 관계기관에 신고될 수 있습니다.<br>
+      © 2026 다모아모바일. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- 모바일 하단 고정 CTA -->
+<div class="mobile-cta">
+  <div class="row">
+    <a class="btn btn-outline" href="tel:0000000000">📞 전화상담</a>
+    <a class="btn btn-primary" href="https://pf.kakao.com/_your_channel/chat" target="_blank">💬 카톡상담</a>
+  </div>
+</div>
+
+<script>
+  // FAQ 아코디언
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const answer = item.querySelector('.faq-a');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>{
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // 탭 전환 (삼성/아이폰)
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // 히어로 가격 카운트업 (시그니처 모션)
+  const el = document.getElementById('countPrice');
+  const target = 1278000;
+  let started = false;
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !started){
+        started = true;
+        let cur = 0;
+        const step = target / 30;
+        const timer = setInterval(()=>{
+          cur += step;
+          if(cur >= target){ cur = target; clearInterval(timer); }
+          el.textContent = Math.floor(cur).toLocaleString('ko-KR') + '원';
+        }, 20);
+      }
+    });
+  });
+  obs.observe(el);
+</script>
+
+</body>
+</html>
